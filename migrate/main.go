@@ -12,6 +12,7 @@ import (
 	"github.com/uptrace/bun/driver/pgdriver"
 
 	"migrate-cmd/datastore"
+	"migrate-cmd/models"
 
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/uptrace/bun"
@@ -25,6 +26,7 @@ func main() {
 	))
 
 	db := bun.NewDB(sqldb, pgdialect.New())
+	db.RegisterModel((*models.MovieGenre)(nil))
 
 	if len(os.Args) > 1 {
 		switch os.Args[1] {
